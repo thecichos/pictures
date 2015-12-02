@@ -25,31 +25,27 @@
 	</div>
 	<script>
 		$(document).ready(function() {
-
+			
 			var $items;
 			$.ajax({
 				url: 'select.php',
 				type: 'POST'
 			})
 			.done(function(result) {
-				var image = new Image();
-				image.src = result;
-				console.log(image);
-				var foo = document.getElementById('foo');
-				foo.innerHTML = image;
-				$items = '<div class="grid-item"><img src="'+ image +'" alt="" /></div>';
+				console.log("done")
+				$items = result;
+				$grid.append($items)
+			.masonry('appended', $items);
 			})
 			.fail(function(result) {
-				console.log(image);
+				console.log(result);
 			})
 			.always(function(result) {
-				// console.log("complete" + result);
+			 console.log("complete " + result);
 			});
 			var $grid = $('.grid').masonry({
-				itemSelector: '.grid-item'
+					itemSelector: '.grid-item'
 			});
-			$grid.append($items)
-			.masonry('appended', $items);
 
 		});
 
@@ -117,7 +113,8 @@
 				$("html").on("click", function() {
 					vid = document.getElementById('video');
 					context.drawImage(video, 0, 0);
-					var dataURL = canvas.toDataURL();
+					var dataURL = canvas.toDataURL("image/jpeg");
+					console.log(dataURL);
 					insert(dataURL);
 				});
 			}
