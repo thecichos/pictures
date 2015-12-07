@@ -1,5 +1,4 @@
 <?php
-	
 	$servername = "localhost";
 	$username = "php";
 	$password = "123456";
@@ -12,19 +11,30 @@
 	{
 		$ifp = fopen($output_file, "wb");
 
-		$data = explode(',', $base64_string);
-		fwrite($ifp, base64_decode($data[1]));
+		fwrite($ifp, base64_decode($base64_string));
+
 		fclose($ifp);
 
 		return $output_file;
 	}
-
+	$files = glob("pictures/*");
+	if ($files != 0) {
+	foreach ($files as $file) {
+		if (is_file($file)) {
+			unlink($file);
+		}
+	}
+}
 	if ($result->num_rows > 0) {
 		$i = 0;
 		while ($row = $result->fetch_assoc()) {
-			$string = explode(",",$row["IMAGE"]);
+			$string = preg_replace('/data:image\/jpeg;base64,/', "",$row["IMAGE"]);
+			// $string = preg_replace('/[[:blank:]]/', "",$string);
+			// $string = preg_replace('/[\/]/', "",$string);
+			print_r($string);
+			base64_to_jpeg($string, "pictures/$i.jpeg");
+			echo '<div class="grid-item"><img src="'. "pictures/$i.jpeg" .'"></div>';
 
-			echo '<div class="grid-items"> <img src="'. base64_decode($string[1]) .'"></div>';
 			$i = $i + 1;
     };
 	} else {
@@ -33,3 +43,4 @@
 
 	$conn->close();
  ?>
+<img src="" alt="" />

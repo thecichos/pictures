@@ -7,15 +7,15 @@
 	if ($conn->connect_error) {
 		echo "connection failed" . $conn->connect_error;
 	}
-	echo "you haz success";
-	$sql = "CREATE TABLE pictures (
-		ID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-		IMAGE MEDIUMBLOB NOT NULL
-	)";
+	echo "you haz success ";
+
+	$sql = "DROP TABLE pictures";
+
 	if ($conn->query($sql) === TRUE) {
-		echo "Table created";
+		echo "haz been created";
 	} else {
-		echo "you haz error " . $conn->error;
+		echo "haz error" . $conn->error;
 	}
+
 	$conn->close();
  ?>
