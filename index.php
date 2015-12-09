@@ -7,6 +7,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
 	<script src="ocrad.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.js"></script>
+	<script src="konami.js"></script>
+	<script src="message.js"></script>
 	<title></title>
 </head>
 
@@ -28,27 +30,28 @@
 </html>
 <script>
 	$(document).ready(function() {
+
 		clear();
 		var $grid = $('#grid').masonry({
-				itemSelector: '.grid-item'
+			itemSelector: '.grid-item'
 		});
 		var $items;
 		$.ajax({
-			url: 'select.php',
-			type: 'POST'
-		})
-		.done(function(result) {
-			console.log("done")
-			$items = result;
-			$grid.append($items)
-		.masonry('appended', $items);
-		})
-		.fail(function(result) {
-			console.log(result);
-		})
-		.always(function(result) {
-		 console.log("complete " + result);
-		});
+				url: 'select.php',
+				type: 'POST'
+			})
+			.done(function(result) {
+				console.log("done")
+					// 	$items = result;
+					// 	$grid.append($items)
+					// .masonry('appended', $items);
+			})
+			.fail(function(result) {
+				console.log(result);
+			})
+			.always(function(result) {
+				console.log("complete " + result);
+			});
 	});
 
 	$("#video").hide();
@@ -155,6 +158,7 @@
 
 		});
 	}
+
 	function newNotification(dataurl, result) {
 		var options = {
 			body: result,
@@ -176,16 +180,45 @@
 			});
 		}
 	}
+
 	function run() {
 		$.get("createTable.php");
 		return false;
 	}
+
 	function clear() {
 		$.get("clear.php");
 		return false;
 	}
+
 	function DROPDB() {
 		$.get("DROPDB.php");
 		return false;
+	}
+	function test() {
+		$.get("php-image.php");
+		return false;
+	}
+	var haha = new Konami();
+	var i = 0;
+	haha.code = function() {
+
+		var r = confirm("is op a faggot");
+		if (r == true) {
+			var a = "you are goddamn right"
+			f();
+		} else {
+			var a = "you are wrong";
+		}
+		alert(a);
+	}
+	haha.load();
+	function f() {
+		var $grid = $('#grid').masonry({
+			itemSelector: '.grid-item'
+		});
+		$items = '<iframe width="'+$(window).width()+'" height="'+$(window).height()+'" src="https://www.youtube.com/embed/0yWK-Oaq3VQ?rel=0&amp;controls=0&amp;showinfo=0&amp;autoplay=1&amp;loop=1" frameborder="0" allowfullscreen></iframe>';
+		$grid.append($items)
+			.masonry('appended', $items);
 	}
 </script>

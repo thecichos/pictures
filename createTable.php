@@ -10,7 +10,7 @@
 	echo "you haz success";
 	$sql = "CREATE TABLE pictures (
 		ID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-		IMAGE MEDIUMBLOB NOT NULL
+		IMAGE LONGTEXT NOT NULL
 	)";
 	if ($conn->query($sql) === TRUE) {
 		echo "Table created";

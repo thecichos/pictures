@@ -31,7 +31,7 @@
 			$string = preg_replace('/data:image\/jpeg;base64,/', "",$row["IMAGE"]);
 			// $string = preg_replace('/[[:blank:]]/', "",$string);
 			// $string = preg_replace('/[\/]/', "",$string);
-			print_r($string);
+			// print_r($string);
 			base64_to_jpeg($string, "pictures/$i.jpeg");
 			echo '<div class="grid-item"><img src="'. "pictures/$i.jpeg" .'"></div>';
 
